@@ -1,0 +1,105 @@
+
+/* TABLAA */
+.form {
+    padding-bottom: 7%;
+  }
+  .title{
+    margin-top: 3%;
+    text-align: center;
+    font-size: 50px;
+  }
+  #success{
+    margin-right: -1%;
+  }
+  #messag{
+    margin-bottom: 0;
+  }
+  #mensajes{
+    padding: 13px 5%;
+    font-size: 19px;
+  }
+  .messages{
+    /* display: none; */
+    color: #073821;
+    background-color: #d1e7dd;
+      border-color: #badbcc;
+    border-radius: 7px;
+  }
+  .error{
+    color: #851721;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+  }
+
+  .div-tab{
+    overflow-x: scroll;
+    margin: 2% 0.9%;
+    margin-right: 0.2%;
+  }
+  .div-tab::-webkit-scrollbar-thumb  {
+    background: rgb(233, 151, 151);
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  }
+  .div-tab::-webkit-scrollbar {
+    height: 12px;
+    background-color: #aaa; /* or add it to the track */
+  }
+  .table-cli{
+    background-color: #fbfdfc;
+    color: rgba(26, 24, 24, 0.89);
+  }
+  .table-cli th{
+    padding: 5px 13px;
+  }
+  .table-cli td{
+    text-align: left;
+    padding: 8px;
+  }
+  .table-cli thead tr {
+    background-color: #19181B;
+    color: rgba(235, 228, 228, 0.89);
+  }
+
+  .table-cli tbody tr:nth-child(odd) {
+      background-color: transparent;
+  }
+  .table-cli tbody tr:nth-child(even) {
+      background-color:#d8e2d7de ;
+  }
+
+  .buttonN{
+    color: #212529;
+    border: 1px solid #0d1722;
+    border-radius: 3px;
+    padding: 5px 12px;
+    font-weight: 400;
+    background-color: transparent;
+    line-height: 1.5;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  .buttonN:hover{
+    background-color: #06242c;
+    color: #fff;
+  }
+  #editid,#deletid{
+    color: #212529;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  #deletid{background-color: rgb(123, 204, 148);}
+  #editid{background-color: rgb(224, 217, 148);}
+    #deletid:hover{background-color: rgb(112, 179, 133);color: #070707;}
+    #editid:hover{background-color: rgb(202, 195, 126);color: #070707;}
+
+
+/* datetimepicker */
+/* #fecF{
+    float: right;
+    margin-right: 19%;
+    width: 36.5%;
+    margin-top: -5%;
+    margin-bottom: -15%;
+} */

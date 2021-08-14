@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="form" id="form">
-    <a href="{{ route('activity.index') }}" class="btn btn-dark">Volver</a><br><br>
+    <a href="{{ route('novedad.index') }}" class="btn btn-dark">Volver</a><br><br>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -18,58 +18,80 @@
         </div>
     @endif
 
-    <form enctype="multipart/form-data" action="{{ route('activity.store') }}" class="form-ob" method="POST">
+    <form enctype="multipart/form-data" action="{{ route('novedad.store') }}" class="form-ob" method="POST">
 
         @csrf
-        <h1>Formulario Actividad</h1>
+        <h1>Formulario Novedad</h1>
         <div class="formula">
             <p>
-                <label for="NombreA">Nombre Actividad:</label>
-                <input type="text" name="NombreActividad" id="NombreA" value="{{ old('NombreActividad') }}" placeholder="Nombre Actividad"><br>
+                <label for="AsuntoN">Asunto Novedad:</label>
+                <input type="text" name="AsuntoNovedad" id="AsuntoN" value="{{ old('AsuntoNovedad') }}" placeholder="Asunto Novedad"><br>
             </p>
             <p>
-                <label for="detac">Descripción Actividad:</label><br>
-                <textarea name="DescripcionActividad" id="detac" cols="85" value="{{ old('DescripcionActividad') }}" rows="3"></textarea>
-            </p>
-            <p>
-                <label for="fecI">Fecha de Inicio:</label>
-                <input type="datetime-local" id="fecI" value="{{ old('FechaInicioA') }}" name="FechaInicioA"><br>
-            </p>
-            <p>
-                <label for="fecF">Fecha de Fin:</label>
-                <input type="datetime-local" id="fecF" value="{{ old('FechaFinA') }}" name="FechaFinA"><br>
-            </p>
-            <p>
-                <label for="estad">Estado de Actividad:</label>
-                <select name="estado_actividad_id" class="inpt" id="estad">
+                <label for="estad">Estado Novedad:</label>
+                <select name="EstadoNovedad" class="inpt" id="estad">
                     <option value="">Seleccione</option>
-                    <option value="1">Sin empezar</option>
-                    <option value="2">En progreso</option>
-                    <option value="3">Atrasado</option>
-                    <option value="4">Completo</option>
+                    <option value="1">Sin Atender</option>
+                    <option value="2">Atendida</option>
+                    <option value="3">En espera</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="detac">Descripción Novedad:</label><br>
+                <textarea name="DescripcionN" id="detac" cols="85" placeholder="Descripcion" rows="5">{{ old('DescripcionN') }}</textarea>
+            </p>
+            <p>
+                <label for="tnov">Tipo Novedad:</label>
+                <select class="inpt" name="tipo_novedad_id" id="tnov">
+                    <option value="">Seleccione</option>
+                    @forelse ($tn as $cl)
+                        <option value="{{ $cl->id }}">{{ $cl->NombreTipoN }}</option>
+                    @empty
+                        <option value="">Ups! Selecciona alguno para continuar </option>
+                    @endforelse
                 </select>
             </p>
             <p>
-                <label for="fase_t">Fase de actividad:</label>
-                <select name="fase_tarea_id" class="inpt" id="fase_t">
+                <label for="Activity">Actividad:</label>
+                <select class="inpt" name="actividad_id" id="Activity">
                     <option value="">Seleccione</option>
-                    <option value="1">Recolección de Información</option>
-                    <option value="2">Preparación y Diseño</option>
-                    <option value="3">Desarrollo e Implementación</option>
-                    <option value="4">Fase de Evaluación y Control</option>
-                    <option value="5">Fase de Cierre</option>
+                    @forelse ($Act as $cl)
+                        <option value="{{ $cl->id }}">{{ $cl->NombreActividad }}</option>
+                    @empty
+                        <option value="">Ups! Selecciona alguno para continuar </option>
+                    @endforelse
                 </select>
             </p>
             <p>
-                <label for="obr">Obra:</label>
-                <input type="number" class="inpt" id="obr" name="obra_id" value="3">
+                <label for="Usu">Usuario:</label>
+                <select class="inpt" name="usuario_id" id="Usu">
+                    <option value="">Seleccione</option>
+                    @forelse ($Usua as $cl)
+                        <option value="{{ $cl->id }}">{{ $cl->NombreUsuario }}</option>
+                    @empty
+                        <option value="">Ups! Selecciona alguno para continuar </option>
+                    @endforelse
+                </select>
             </p>
+            <p>
+                <label for="Cl">Cliente:</label>
+                <select class="inpt" name="cliente_id" id="Cl">
+                    <option value="">Seleccione</option>
+                    @forelse ($Client as $cl)
+                        <option value="{{ $cl->id }}">{{ $cl->NombreCC }}</option>
+                    @empty
+                        <option value="">Ups! Selecciona algun cliente para continuar </option>
+                    @endforelse
+                </select>
+            </p>
+
         </div>
 
         <button class="save">Guardar</button>
     </form>
     <br><br>
-    <a href="{{ route('activity.index') }}" class="btn btn-dark buttonN">Volver</a>
+    <a href="{{ route('novedad.index') }}" class="btn btn-dark buttonN">Volver</a>
 </div>
 
 @endsection

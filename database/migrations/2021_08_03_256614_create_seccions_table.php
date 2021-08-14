@@ -25,7 +25,7 @@ class CreateSeccionsTable extends Migration
             ->references("id")->on("colors");
 
             $table->foreign("diseno_id")
-            ->references("id")->on("disenos");
+            ->references("id")->on("disenos")->onDelete('cascade');
         });
     }
 

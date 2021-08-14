@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Planilla extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    
+    public function usuario(){
+        return $this->belongsTo(Usuario::class);
+    }
+
 }

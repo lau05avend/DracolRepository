@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveCiudadRequest;
 use App\Models\LugarNacimiento;
+use Attribute;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class LugarNacimientoController extends Controller
 {
@@ -14,72 +17,47 @@ class LugarNacimientoController extends Controller
      */
     public function index()
     {
-        //
+        $lugarn = LugarNacimiento::all()->sortBy('id');
+        return view('LugarNacimiento.index', compact('lugarn'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('LugarNacimiento.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(SaveCiudadRequest $request)
+    {
+        LugarNacimiento::create($request->validated());
+        /*$request->validate([
+            'LugarNacimientoU' => ['required',Rule::unique('lugar_nacimientos','LugarNacimientoU')->ignore($request)]
+            ], [], [
+            'LugarNacimientoU' => 'Nombre de Ciudad'
+            ]);LugarNacimiento::create($request->only('LugarNacimientoU'));*/
+        return redirect()->route('ciudad.index')->with('status',__('Ciudad agregada satisfactoriamente.'));
+    }
+
+    public function show(LugarNacimiento $ciudad)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\LugarNacimiento  $lugarNacimiento
-     * @return \Illuminate\Http\Response
-     */
-    public function show(LugarNacimiento $lugarNacimiento)
+    public function edit(LugarNacimiento $ciudad)
     {
-        //
+        return view('LugarNacimiento.edit',[
+            'ciudad' => $ciudad
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\LugarNacimiento  $lugarNacimiento
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(LugarNacimiento $lugarNacimiento)
+    public function update(SaveCiudadRequest $request, LugarNacimiento $ciudad)
     {
-        //
+        $ciudad->update($request->validated());
+        return redirect()->route('ciudad.index')->with('status',__('Ciudad editada satisfactoriamente.'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LugarNacimiento  $lugarNacimiento
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, LugarNacimiento $lugarNacimiento)
+    public function destroy(LugarNacimiento $ciudad)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\LugarNacimiento  $lugarNacimiento
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(LugarNacimiento $lugarNacimiento)
-    {
-        //
+        $ciudad->delete();
+        return redirect()->route('ciudad.index')->with('status',__('Ciudad eliminada satisfactoriamente.'));
     }
 }

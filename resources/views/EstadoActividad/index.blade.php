@@ -28,7 +28,7 @@
                     <tr>
                         <td>{{ $l->id }}</td>
                         <td>{{ $l->NombreEstado }}</td>
-                        <td><a href="{{ route( 'estadoactividad.edit',['estadoactividad'=>$l]) }}"><button>Editar</button></a></td>
+                        <td><a class="view_data" href="{{ route( 'estadoactividad.edit',['estadoactividad'=>$l]) }}"><button>Editar</button></a></td>
 
                         <td><form action="{{ route('estadoactividad.destroy',$l->id) }}" method="POST">
                             @csrf @method('DELETE')
@@ -40,4 +40,6 @@
             </table>
         </div>
     </div>
+    <br><br>
+
 @endsection

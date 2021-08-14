@@ -14,4 +14,8 @@ class TipoIdentificacion extends Model
     public function Usuarios(){
         return $this->hasMany(Usuario::class);
     }
+     //relacion uno a muchos
+     public function Cliente(){
+        return $this->hasMany(Cliente::class);
+    }
 }

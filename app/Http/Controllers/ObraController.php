@@ -6,6 +6,7 @@ use App\Http\Requests\SaveObraFormRequest;
 use App\Models\Cliente;
 use App\Models\Obra;
 use App\Models\TipoObra;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class ObraController extends Controller
@@ -43,15 +44,6 @@ class ObraController extends Controller
         return redirect()->route('obra.index')->with('status',__('Obra creado correctamente.'));
     }
 
-    public function show(Obra $obra)
-    {
-        // $ObraE = Obra::findOrFail($obra);
-        // return view('obra.show',[
-        //     'ObraEsp' => $ObraE  //pasar el proyecto a la vista
-        // ]);
-
-    }
-
     public function edit(Obra $obra)
     {
         $tipoO = TipoObra::get();
@@ -77,6 +69,29 @@ class ObraController extends Controller
 
     public function desactive($met){
         return "hola".$met;
+    }
+
+    public function show(Obra $obra)
+    {
+        $usuarios = $obra->Usuarios()->get()->sortBy('id');
+        return view('obra.show',[
+            'obra' => $obra,  //pasar el proyecto a la vista
+            'users' => $usuarios
+        ]);
+    }
+
+    public function editUsers(Obra $obra){
+        $usuarios = Usuario::all()->sortBy('id');
+        return view('obra.Ousuario',[
+            'obra' => $obra,
+            'users' => $usuarios
+        ]);
+    }
+
+    public function Usuarios(Request $request, Obra $obra)
+    {
+        $obra->Usuarios()->sync($request->Usuarios);
+        return redirect()->route('obra.show',$obra)->with('success', __('Usuarios asignados exitosamente.'));
     }
 
     /*

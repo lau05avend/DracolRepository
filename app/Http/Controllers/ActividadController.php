@@ -7,6 +7,8 @@ use App\Models\Actividad;
 use App\Models\EstadoActividad;
 use App\Models\FaseTarea;
 use App\Models\Obra;
+use App\Models\Usuario;
+use Illuminate\Http\Request;
 
 class ActividadController extends Controller
 {
@@ -22,6 +24,7 @@ class ActividadController extends Controller
     {
         $estadoA = EstadoActividad::get()->sortBy('id');
         $faseT = FaseTarea::get()->sortBy('id');
+        $obra = Obra::all();
         return view('Actividad.create',[
             'faseT' => $faseT,
             'estadoA' => $estadoA
@@ -32,11 +35,6 @@ class ActividadController extends Controller
     {
         Actividad::create($request->validated());
         return redirect()->route('activity.index')->with('status',__('Actividad creada correctamente.'));
-    }
-
-    public function show(Actividad $actividad)
-    {
-        //
     }
 
     public function edit(Actividad $actividad)//retornar valores en edicion
@@ -64,4 +62,29 @@ class ActividadController extends Controller
         $actividad->delete();
         return redirect()->route('activity.index')->with('status',__('Actividad eliminada correctamente.'));
     }
+
+    public function show(Actividad $actividad)
+    {
+        $usuarios = $actividad->Usuarios()->get()->sortBy('id');
+        return view('Actividad.show', [
+            'activity' => $actividad,
+            'users' => $usuarios
+        ]);
+    }
+
+    public function editUs(Actividad $actividad)
+    {
+        $usuarios = Usuario::all()->sortBy('id');
+        return view('Actividad.Ausuarios', [
+            'activity' => $actividad,
+            'users' => $usuarios
+        ]);
+    }
+
+    public function Usuarios(Request $request, Actividad $actividad)
+    {
+        $actividad->Usuarios()->sync($request->Usuarios);
+        return redirect()->route('activity.show',$actividad)->with('success', __('Usuarios asignados exitosamente.'));
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SaveUsuariosRequest extends FormRequest
 {
@@ -24,15 +25,15 @@ class SaveUsuariosRequest extends FormRequest
     public function rules()
     {
         return [
-            'NombreUsuario' => 'required',
+            'NombreUsuario' => ['required'],
             'ApellidosUsuario' => 'required',
-            'NumeroDocumento' => 'required |',
+            'NumeroDocumento' => ['required',Rule::unique('usuarios','NumeroDocumento')->ignore($this->usuario)],
             'NumeCelular' => 'required',
             'NumTelefono' => 'required',
             'FechaNacimientoU' => 'required',
-            'CorreoUsuario' => 'required | email',
+            'CorreoUsuario' => ['required','email',Rule::unique('usuarios','CorreoUsuario')->ignore($this->usuario)],
             'GeneroUsuario' => 'required',
-           'DireccionUsuario' => 'required',
+            'DireccionUsuario' => 'required',
             'EdadU' => 'required | integer',
             'contrasena' => 'required|min:5',
             'Disponibilidad' => 'required',

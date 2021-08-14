@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\FuncCall;
 
 class Obra extends Model
 {
@@ -15,17 +16,22 @@ class Obra extends Model
     public function TipoObra(){
         return $this->belongsTo(TipoObra::class);
     }
+    public function Cliente(){
+        return $this->belongsTo(Cliente::class);
+    }
 
     //relacion uno a muchos
     public function Actividades(){
         return $this->hasMany(Actividad::class);
     }
-
-    // relacion uno a muchos
     public function Disenos(){
         return $this->hasMany(Diseno::class);
     }
 
+    //relacion muchos a muchos
+    public function Usuarios(){
+        return $this->belongsToMany(Usuario::class)->withTimestamps();
+    }
 
 }
 

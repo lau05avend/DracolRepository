@@ -19,42 +19,38 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nombre Actividad</th>
-                        <th>Descripcion</th>
-                        <th>Fecha Inicio</th>
-                        <th>Fecha Fin</th>
-                        <th>Creada en</th>
-                        <th>Actualizada en</th>
-                        <th>Estado</th>
-                        <th>Fase</th>
-                        <th>Obra</th>
+                        <th>IdObra</th>
+                        <th>ImagenPlano</th>
+                        <th>ObservacionDiseno</th>
+                        <th>FechaRegistroD</th>
+                        <th>Actualizado en</th>
+
+
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="bodyC">
-                    @foreach ($lista as $l)
+                    @foreach ($list as $l)
                     <tr>
                         <td>{{ $l->id }}</td>
-                        <td>{{ $l->NombreActividad }}</td>
-                        <td>{{ $l->DescripcionActividad }}</td>
-                        <td>{{ $l->FechaInicioA }}</td>
-                        <td>{{ $l->FechaFinA }}</td>
-                        <td>{{ date_format($l->created_at, 'jS M Y') }}</td>
-                        <td>{{ $l->updated_at? $l->updated_at :'' }}</td>
-                        <td>{{ $l->estado_actividad_id }}</td>
-                        <td>{{ $l->fase_tarea_id }}</td>
-                        <td>{{ $l->obra_id }}</td>
-                        <td><button><a href="{{ route('diseno.edit',$l) }}">Editar</a></button></td>
+                        <td>{{ $l->Obra->NombreObra }}</td>
+                        <td><img src="{{$l->ImagenPlano }}" alt="" class="imagenusuario" width="300px" height="150px"></td>
+                        <td>{{ $l->ObservacionDiseno }}</td>
+                        <td>{{ $l->created_at }}</td>
+                        <td>{{ $l->updated_at }}</td>
+
+
+                        <td><button><a href="{{ route('diseno.edit',$l) }}" class="bg-red-400 butt hover:bg-red-300">Editar</a></button></td>
 
                         <td><form action="{{ route('diseno.destroy',$l->id) }}" method="POST">
                             @csrf @method('DELETE')
-                            <button onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
+                            <button class="bg-yellow-200 butt hover:bg-yellow-300" onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
                         </form></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        {{ $lista->links() }}
+        {{ $list->links() }}
     </div>
 @endsection

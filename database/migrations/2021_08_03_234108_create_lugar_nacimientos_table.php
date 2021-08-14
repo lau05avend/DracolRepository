@@ -15,7 +15,7 @@ class CreateLugarNacimientosTable extends Migration
     {
         Schema::create('lugar_nacimientos', function (Blueprint $table) {
             $table->unsignedTinyInteger('id')->autoIncrement();
-            $table->string("LugarNacimientoU",50)->unique();
+            $table->string("LugarNacimientoU",100)->unique();
         });
     }
 

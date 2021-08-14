@@ -40,7 +40,7 @@
                 <input type="number" name="NumTelefono" id="NumTelefono" value="{{ old('NumTelefono') }}" placeholder="Num.Telefono"><br>
             </p>
             <p>
-                <label for="FotoUsuario">FotoUsuario:</label>
+                <label for="FotoUsuario">Foto Cliente:</label>
                 <input type="file" name="FotoL" id="FotoUsuario" value="{{ old('FotoL') }}" placeholder="FotoUsuario"><br>
             </p>
             <p>

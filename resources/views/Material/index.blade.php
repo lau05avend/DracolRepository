@@ -12,22 +12,18 @@
     @endif
     <div class="form">
 
-        <h1>Lista de actividades</h1><br>
+        <h1>Material</h1><br>
         <a class="buttonN" href="{{ route('activity.create') }}">NUEVO</a><br><br>
         <div class="div-tab">
             <table class="table-cli">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nombre Actividad</th>
-                        <th>Descripcion</th>
-                        <th>Fecha Inicio</th>
-                        <th>Fecha Fin</th>
-                        <th>Creada en</th>
+                        <th>Descripcion Material </th>
+                        <th>color</th>
+                        <th>tipo material</th>
+                        <th>Registrado en</th>
                         <th>Actualizada en</th>
-                        <th>Estado</th>
-                        <th>Fase</th>
-                        <th>Obra</th>
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
@@ -35,20 +31,16 @@
                     @foreach ($lista as $l)
                     <tr>
                         <td>{{ $l->id }}</td>
-                        <td>{{ $l->NombreActividad }}</td>
-                        <td>{{ $l->DescripcionActividad }}</td>
-                        <td>{{ $l->FechaInicioA }}</td>
-                        <td>{{ $l->FechaFinA }}</td>
-                        <td>{{ date_format($l->created_at, 'jS M Y') }}</td>
+                        <td>{{ $l->DescripcionMat }}</td>
+                        <td>{{ $l->Color?$l->Color->Ncolor:'-'}}</td>
+                        <td>{{ $l->TipoMaterial->NombreTipoM}}</td>
+                        <td>{{ $l->created_at?date_format($l->created_at, 'jS M Y'):'-' }}</td>
                         <td>{{ $l->updated_at? $l->updated_at :'' }}</td>
-                        <td>{{ $l->estado_actividad_id }}</td>
-                        <td>{{ $l->fase_tarea_id }}</td>
-                        <td>{{ $l->obra_id }}</td>
-                        <td><button><a href="{{ route('activity.edit',$l) }}">Editar</a></button></td>
+                        <td><button><a href="{{ route('material.edit',$l) }}" class="bg-red-400 butt hover:bg-red-300">Editar</a></button></td>
 
-                        <td><form action="{{ route('activity.destroy',$l->id) }}" method="POST">
+                        <td><form action="{{ route('material.destroy',$l->id) }}" method="POST">
                             @csrf @method('DELETE')
-                            <button onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
+                            <button class="bg-yellow-200 butt hover:bg-yellow-300" onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
                         </form></td>
                     </tr>
                     @endforeach

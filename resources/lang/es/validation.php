@@ -40,7 +40,7 @@ return [
     'digits_between'       => 'El campo :attribute debe tener entre :min y :max dígitos.',
     'dimensions'           => 'Las dimensiones de la imagen :attribute no son válidas.',
     'distinct'             => 'El campo :attribute contiene un valor duplicado.',
-    'email'                => 'El :attribute no es un correo válido.',
+    'email'                => 'El ":attribute" no es un correo válido.',
     'ends_with'            => 'El campo :attribute debe finalizar con uno de los siguientes valores: :values',
     'exists'               => 'El campo :attribute es inválido.',
     'file'                 => 'El campo :attribute debe ser un archivo.',
@@ -86,10 +86,10 @@ return [
     'mimes'                => ':attribute debe ser un archivo con formato: :values.',
     'mimetypes'            => ':attribute debe ser un archivo con formato: :values.',
     'min'                  => [
-        'array'   => 'El campo :attribute debe tener al menos :min elementos.',
+        'array'   => 'El campo ":attribute" debe tener al menos :min elementos.',
         'file'    => 'El tamaño de :attribute debe ser de al menos :min kilobytes.',
         'numeric' => 'El tamaño de :attribute debe ser de al menos :min.',
-        'string'  => 'El campo :attribute debe contener al menos :min caracteres.',
+        'string'  => 'El campo ":attribute" debe contener al menos :min caracteres.',
     ],
     'multiple_of'          => 'El campo :attribute debe ser múltiplo de :value',
     'not_in'               => 'El campo :attribute es inválido.',
@@ -119,13 +119,13 @@ return [
     'starts_with'          => 'El campo :attribute debe comenzar con uno de los siguientes valores: :values',
     'string'               => 'El campo :attribute debe ser una cadena de caracteres.',
     'timezone'             => ':Attribute debe ser una zona horaria válida.',
-    'unique'               => 'El campo :attribute ya ha sido registrado.',
+    'unique'               => 'Ese :attribute ya ha sido registrado.',
     'uploaded'             => 'Subir :attribute ha fallado.',
     'url'                  => 'El campo :Attribute debe ser una URL válida.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
     'custom'               => [
         'email'    => [
-            'unique' => 'El :attribute ya ha sido registrado.',
+            'unique' => 'Ese :attribute ya ha sido registrado.',
         ],
         'password' => [
             'min' => 'La :attribute debe contener más de :min caracteres',

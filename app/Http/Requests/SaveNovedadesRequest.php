@@ -16,20 +16,26 @@ class SaveNovedadesRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            '' => 'required',
-            '' => 'required',
-            '' => 'required',
-            '' => 'required',
-            '' => 'required',
-            '' => 'required',
+            'AsuntoNovedad' => 'required',
+            'EstadoNovedad' => 'required',
+            'DescripcionN' => 'required',
+            'tipo_novedad_id' => 'required',
+            'actividad_id' => 'required',
+            'usuario_id' => '',
+            'cliente_id' => ''
+        ];
+    }
+    public function messages()
+    {
+        return[
+        'AsuntoNovedad.required'=>'El asunto necesita completarse',
+        'EstadoNovedad.required'=>'El esatado debe ser completado',
+        'DescripcionN.required'=>'La describcion debe contenter texto',
+        'Tipo_novedad_id.required'=>'Debe completar el tipo de novedad',
+        'Actividad_id.required'=>'Debe completar la actividad',
         ];
     }
 }

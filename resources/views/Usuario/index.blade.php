@@ -2,6 +2,10 @@
 
 @section('title','Actividad')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/styles-usu.css'); }}">
+@endsection
+
 @section('content')
     <!--========== CONTENT ==========-->
     @if (session('status'))
@@ -45,10 +49,10 @@
                         <td>{{ $l->id }}</td>
                         <td>{{ $l->NombreUsuario }}</td>
                         <td>{{ $l->ApellidosUsuario }}</td>
-                        <td>{{ $l->tipo_identificacion_id }}</td>
+                        <td>{{ $l->TipoIdentificacion->TipoIdentificacion}}</td>
                         <td>{{ $l->NumeroDocumento }}</td>
-                        <td>{{ $l->lugar_nacimiento_id }} </td>
-                        <td>{{ $l->estado_civil_id }}</td>
+                        <td>{{ $l->LugarNacimiento->LugarNacimientoU }} </td>
+                        <td>{{ $l->EstadoCivil->EstadoCivil }}</td>
                         <td>{{ $l->NumeCelular }}</td>
                         <td>{{ $l->NumTelefono }}</td>
                         <td>{{ $l->FechaNacimientoU }}</td>
@@ -59,12 +63,13 @@
                         <td>{{ $l->Disponibilidad }}</td>
                         <td>{{ $l->EstadoUsuario }}</td>
                         <td>{{ $l->Rol->NombreRol }}</td>
-                        <td>{{ $l->FotoUsuario }}
-                        <td><a href="{{ route('usuarios.edit',$l) }}"><button>Editar</button></a></td>
+                        <td><img src="{{$l->FotoUsuario }}" alt="" class="imagenusuario" width="80%" height="80%"></td>
+
+                        <td><a href="{{ route('usuarios.edit',$l) }}" class="bg-red-400 butt hover:bg-red-300"><button>Editar</button></a></td>
 
                         <td><form action="{{ route('usuarios.destroy',$l->id) }}" method="POST">
                             @csrf @method('DELETE')
-                            <button onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
+                            <button class="bg-yellow-200 butt hover:bg-yellow-300" onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
                         </form></td>
                     </tr>
                     @endforeach
@@ -75,3 +80,4 @@
         {{ $lista->links() }}
     </div>
 @endsection
+

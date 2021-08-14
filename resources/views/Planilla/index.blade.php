@@ -44,11 +44,11 @@
                         <td>{{ $l->estado_actividad_id }}</td>
                         <td>{{ $l->fase_tarea_id }}</td>
                         <td>{{ $l->obra_id }}</td>
-                        <td><button><a href="{{ route('activity.edit',$l) }}">Editar</a></button></td>
+                        <td><button><a href="{{ route('activity.edit',$l) }}" class="bg-red-400 butt hover:bg-red-300">Editar</a></button></td>
 
                         <td><form action="{{ route('activity.destroy',$l->id) }}" method="POST">
                             @csrf @method('DELETE')
-                            <button onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
+                            <button class="bg-yellow-200 butt hover:bg-yellow-300" onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
                         </form></td>
                     </tr>
                     @endforeach

@@ -2,6 +2,10 @@
 
 @section('title','Obras')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/styles-acti.css'); }}">
+@endsection
+
 @section('content')
     <!--========== CONTENT ==========-->
     @if (session('status'))
@@ -20,17 +24,13 @@
                     <tr>
                         <th>Id</th>
                         <th>Nombre Obra</th>
-                        <th>Medida Área</th>
-                        <th>Medida Perimetro</th>
-                        <th>Material Suelo</th>
                         <th>Dirección Obra</th>
                         <th>Ciudad Obra</th>
                         <th>Estado Obra</th>
                         <th>Creada en</th>
                         <th>Actualizada en</th>
-                        <th>Tipo Obra</th>
                         <th>Cliente</th>
-                        <th colspan="2">Actions</th>
+                        <th colspan="3">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="bodyC">
@@ -38,21 +38,18 @@
                     <tr>
                         <td>{{ $obras->id }}</td>
                         <td>{{ $obras->NombreObra }}</td>
-                        <td>{{ $obras->MedidaArea }}</td>
-                        <td>{{ $obras->MedidaPerimetro }}</td>
-                        <td>{{ $obras->TipoMaterialSuelo }}</td>
                         <td>{{ $obras->DireccionObra }}</td>
                         <td>{{ $obras->CiudadObra }}</td>
                         <td>{{ $obras->EstadoObra}}</td>
                         <td>{{ date_format($obras->created_at, 'jS M Y') }}</td>
                         <td>{{ $obras->updated_at? $obras->updated_at :'' }}</td>
-                        <td>{{ $obras->TipoObra->TipoObra }}</td>
-                        <td>{{ $obras->cliente_id }}</td>
-                        <td><a href="{{ route('obra.edit',$obras) }}"><button>Editar</button></a></td>
+                        <td>{{ $obras->cliente->NombreCC }}</td>
+                        <td><a href="{{ route('obra.show',$obras) }}" class="bg-red-400 butt hover:bg-red-300"><button>Detalles</button></a></td>
+                        <td><a href="{{ route('obra.edit',$obras) }}" class="bg-yellow-200 butt hover:bg-yellow-300"><button>Editar</button></a></td>
 
                         <td><form action="{{ route('obra.destroy',$obras->id) }}" method="POST">
                             @csrf @method('DELETE')
-                            <button onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
+                            <button class="bg-gray-400 butt butt hover:bg-gray-300" onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
                         </form></td>
                     </tr>
                     @endforeach

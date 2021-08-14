@@ -13,4 +13,12 @@ class Diseno extends Model
     public function Obra(){
         return $this->belongsTo(Obra::class);
     }
+
+    //relacion uno a muchos
+    public function secciones(){
+        return $this->hasMany(seccion::class);
+    }
+    public function diseno(){
+        return $this->belongsToMany(Material::class);
+    }
 }

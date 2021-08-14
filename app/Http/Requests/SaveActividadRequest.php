@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SaveActividadRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class SaveActividadRequest extends FormRequest
     public function rules()
     {
         return [
-            'NombreActividad' => 'required',
+            'NombreActividad' => ['required'],
             'DescripcionActividad' => 'required',
             'FechaInicioA' => 'required',
             'FechaFinA' => 'required|after:FechaInicioA',

@@ -8,9 +8,7 @@ use App\Models\LugarNacimiento;
 use App\Models\Rol;
 use App\Models\TipoIdentificacion;
 use App\Models\Usuario;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
@@ -32,11 +30,13 @@ class UsuarioController extends Controller
         $tipo_id = TipoIdentificacion::get();
         $lugar= LugarNacimiento::get();
         $estadoc = EstadoCivil::get();
+
         return view('Usuario.create',[
             'rol' => $roles,
             'tipoi' => $tipo_id,
             'lugar' => $lugar,
             'ec' => $estadoc
+
         ]);
    }
 

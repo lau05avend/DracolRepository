@@ -18,13 +18,13 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nombre </th>
+                        <th>Nombre Completo</th>
                         <th>Num.Documento</th>
+                        <th>Tipo Identificacion </th>
                         <th>E-mail </th>
                         <th>Num.Celular</th>
                         <th>Num.Telefono</th>
                         <th>Tipo de Cliente</th>
-                        <th>Tipo Identificacion </th>
                         <th>Creado en</th>
                         <th>Actualizado en </th>
                         <th>Foto </th>
@@ -37,20 +37,20 @@
                         <td>{{ $l->id }}</td>
                         <td>{{ $l->NombreCC }}</td>
                         <td>{{ $l->NumIdentificacion }}</td>
+                        <td>{{ $l->TipoIdentificacion->TipoIdentificacion  }}</td>
                         <td>{{ $l->CorreoCliente }}</td>
                         <td>{{ $l->NumCelular }}</td>
                         <td>{{ $l->NumTelefono }} </td>
-                        <td>{{ $l->tipo_cliente_id }}</td>
-                        <td>{{ $l->tipo_identificacion_id  }}</td>
-                        <td>{{ $l->created_at }}</td>
-                        <td>{{ $l->updated_at }}</td>
-                        <td>{{ $l->FotoL }} <img src="{{ asset('storage').'/'.$l->FotoL }}" alt="foto"></td>
+                        <td>{{ $l->TipoCliente->nombreTipoC }}</td>
+                        <td>{{ $l->created_at?date('d-m-Y h:i:s A', strtotime($l->created_at )) : '-' }}</td>
+                        <td>{{ $l->updated_at?date('d-m-Y h:i:s A', strtotime($l->updated_at )) :'-' }}</td>
+                        <td><img src="{{$l->FotoL }}" alt="" class="imagenusuario" width="80%" height="80%"></td>
 
-                        <td><a href="{{ route('clientes.edit',$l) }}"><button>Editar</button></a></td>
+                        <td><a href="{{ route('clientes.edit',$l) }}" class="bg-red-400 butt hover:bg-red-300"><button>Editar</button></a></td>
 
                         <td><form action="{{ route('clientes.destroy',$l->id) }}" method="POST">
                             @csrf @method('DELETE')
-                            <button onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
+                            <button class="bg-yellow-200 butt hover:bg-yellow-300" onclick="javascript:return confirm('¿Está seguro que desea eliminar el registro?');">Eliminar</button>
                         </form></td>
                     </tr>
                     @endforeach

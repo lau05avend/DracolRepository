@@ -1,6 +1,6 @@
 @extends('partials/nav')
 
-@section('title','Actividad | Registro')
+@section('title','Diseno | Registro')
 
 @section('content')
 
@@ -20,50 +20,26 @@
 
     <form enctype="multipart/form-data" action="{{ route('diseno.store') }}" class="form-ob" method="POST">
 
-        @csrf
-        <h1>Formulario Diseño</h1>
+    @csrf
+    <h1>Formulario Diseño</h1>
         <div class="formula">
             <p>
-                <label for="NombreA">Nombre Actividad:</label>
-                <input type="text" name="NombreActividad" id="NombreA" value="{{ old('NombreActividad') }}" placeholder="Nombre Actividad"><br>
+                <label for="ImagenPlano">Imagen Plano:</label>
+                <input type="file" name="ImagenPlano" id="ImagenPlano" value="{{ old('ImagenPlano') }}" placeholder="Imagen Plano"><br>
             </p>
             <p>
-                <label for="detac">Descripción Actividad:</label><br>
-                <textarea name="DescripcionActividad" id="detac" cols="85" value="{{ old('DescripcionActividad') }}" rows="3"></textarea>
+                <label for="ObservacionDiseno">Observacion Diseno:</label>
+                <input type="textarea" name="ObservacionDiseno" id="ObservacionDiseno" value="{{ old('ObservacionDiseno') }}" placeholder="ObservacionDiseno"><br>
             </p>
             <p>
-                <label for="fecI">Fecha de Inicio:</label>
-                <input type="datetime-local" id="fecI" value="{{ old('FechaInicioA') }}" name="FechaInicioA"><br>
-            </p>
-            <p>
-                <label for="fecF">Fecha de Fin:</label>
-                <input type="datetime-local" id="fecF" value="{{ old('FechaFinA') }}" name="FechaFinA"><br>
-            </p>
-            <p>
-                <label for="estad">Estado de Actividad:</label>
-                <select name="estado_actividad_id" class="inpt" id="estad">
+            <label for="IdObra">Obra:</label>
+                <select class="inpt" name="obra_id" id="IdObra">
                     <option value="">Seleccione</option>
-                    <option value="1">Sin empezar</option>
-                    <option value="2">En progreso</option>
-                    <option value="3">Atrasado</option>
-                    <option value="4">Completo</option>
-                </select>
-            </p>
-            <p>
-                <label for="fase_t">Fase de actividad:</label>
-                <select name="fase_tarea_id" class="inpt" id="fase_t">
-                    <option value="">Seleccione</option>
-                    <option value="1">Recolección de Información</option>
-                    <option value="2">Preparación y Diseño</option>
-                    <option value="3">Desarrollo e Implementación</option>
-                    <option value="4">Fase de Evaluación y Control</option>
-                    <option value="5">Fase de Cierre</option>
-                </select>
-            </p>
-            <p>
-                <label for="obr">Obra:</label>
-                <input type="number" class="inpt" id="obr" name="obra_id" value="3">
-            </p>
+                @foreach ($IdObra as $IdObra)
+                    <option value="{{$IdObra->id}}"> {{$IdObra->NombreObra}} </option>
+                @endforeach
+                </select>    </p>
+
         </div>
 
         <button class="save">Guardar</button>

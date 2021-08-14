@@ -32,6 +32,8 @@
     </form>
     <br><br>
     <a href="{{ route('estadoactividad.index') }}" class="btn btn-dark buttonN">Volver</a>
+
+    <br><br>
 </div>
 
 @endsection

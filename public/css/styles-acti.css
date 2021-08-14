@@ -1,0 +1,47 @@
+
+
+/* TABLA */
+
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: black;
+}
+.butt{
+    padding: 5% 3%;
+    border-radius: 4px;
+}
+
+/* SHOW */
+
+.title{
+    font-size: 1.4rem;
+    margin-bottom: 4%;
+}
+.p-d{
+    margin-bottom: 3%;
+}
+
+.div-check{
+    margin-bottom: 1%;
+    margin-left: 4%;
+}
+.checkbox{
+    margin-right: 2%;
+}
+
+.list-us{
+    margin-left: 5%;
+}
+
+.div-edit{
+    margin-left: 4%;
+}
+.form-as{
+    margin-left: 3%;
+}
+.form-ob{
+    padding-left: 6%;
+}

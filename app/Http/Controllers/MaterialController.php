@@ -26,35 +26,36 @@ class MaterialController extends Controller
 
     public function store(Request $request)
     {
-        material::create($request->validated());
-        return redirect()->route('material.index')->with('status',__('material registrado correctamente'));
+        Material::create($request->validated());
+        return redirect()->route('Material.index')->with('status',__('Material registrado correctamente'));
     }
 
 
-    public function show(Material $material)
+    public function show(Material $Material)
     {
         //
     }
 
 
-    public function edit(Material $material)
+    public function edit(Material $Material)
     {
         return view('Material.edit', [
-            'material' => $material
+            'Material' => $Material
         ]);
     }
 
 
-    public function update(Request $request, Material $material)
+    public function update(Request $request, Material $Material)
     {
-        $material->update($request->validated());
-        return redirect()->route('material.index')->with('status',__('material actualizado correctamente'));
+        $Material->update($request->validated());
+        return redirect()->route('material.index')->with('status',__('Material actualizado correctamente'));
     }
 
 
-    public function destroy(Material $material)
+    public function destroy(Material $Material)
     {
-        $material->delete();
-        return redirect()->route('material.index')->with('status',__('material eliminado correctamente'));
+        $Material->delete();
+        return redirect()->route('material.index')->with('status',__('Material eliminado correctamente'));
     }
 }
+

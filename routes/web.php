@@ -93,3 +93,7 @@ Route::get('intermat',function(){
     return view('intersecciones.mate');
 })->name('intersecciones');
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
